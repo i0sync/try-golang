@@ -1,5 +1,11 @@
 package main
 
+import (
+	"fmt"
+	"customerapp/domain"
+	"customerapp/mapstore"
+)
+
 type CustomerController struct {
 	// Explicit dependency that hides dependent logic
 	store domain.CustomerStore // CustomerStore value 
