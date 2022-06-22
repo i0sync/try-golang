@@ -1,20 +1,20 @@
 package main
 
 import (
-	"fmt"
 	"customerapp/domain"
 	"customerapp/mapstore"
+	"fmt"
 )
 
 type CustomerController struct {
 	// Explicit dependency that hides dependent logic
-	store domain.CustomerStore // CustomerStore value 
+	store domain.CustomerStore // CustomerStore value
 }
 
-func (c CustomerController ) Add (c domain.Customer) { 
-	err:= c.store.Create(c)
-	if err!=nil { 
-		fmt.Println("Error:", err) 
+func (cc CustomerController) Add(c domain.Customer) {
+	err := cc.store.Create(c)
+	if err != nil {
+		fmt.Println("Error:", err)
 		return
 	}
 	fmt.Println("New Customer has been created")
@@ -22,6 +22,14 @@ func (c CustomerController ) Add (c domain.Customer) {
 
 func main() {
 	controller := CustomerController{
-	store : mapstore.NewMapStore(), // Inject the dependency
-	// store : mongodb.NewMongoStore(), // with another database
+		store: mapstore.NewMapStore(), // Inject the dependency
+		// store : mongodb.NewMongoStore(), // with another database
+	}
+	c1 := domain.Customer{
+		Id:    "AUNSWGR2003",
+		Name:  "Sujith M",
+		Email: "sujith.m@email.com",
+	}
+	controller.Add(c1)
+	controller.GetById("AUNSWGR2003")
 }
