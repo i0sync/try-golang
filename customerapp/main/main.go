@@ -11,8 +11,8 @@ type CustomerController struct {
 	store domain.CustomerStore // CustomerStore value
 }
 
-func (c CustomerController) Add(c domain.Customer) {
-	err := c.store.Create(c)
+func (cc CustomerController) Add(c domain.Customer) {
+	err := cc.store.Create(c)
 	if err != nil {
 		fmt.Println("Error:", err)
 		return
@@ -25,4 +25,11 @@ func main() {
 		store: mapstore.NewMapStore(), // Inject the dependency
 		// store : mongodb.NewMongoStore(), // with another database
 	}
+	c1 := domain.Customer{
+		Id:    "AUNSWGR2003",
+		Name:  "Sujith M",
+		Email: "sujith.m@email.com",
+	}
+	controller.Add(c1)
+	controller.GetById("AUNSWGR2003")
 }
