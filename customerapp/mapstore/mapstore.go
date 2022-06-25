@@ -21,7 +21,7 @@ func (mstore MapStore) Create(customer domain.Customer) error {
 		return errors.New("Customer already exists !")
 	}
 	mstore.store[customer.Id] = customer
-	fmt.Println("New customer added !")
+	fmt.Printf("New customer [%s] added !\n", customer.Id)
 	return nil
 }
 
@@ -30,7 +30,7 @@ func (mstore *MapStore) Delete(Id string) error {
 		return errors.New("Customer doesn't exist !")
 	}
 	delete(mstore.store, Id)
-	fmt.Printf("Customer [%s] deleted !", Id)
+	fmt.Printf("Customer [%s] deleted !\n", Id)
 	return nil
 }
 
@@ -39,7 +39,7 @@ func (mstore *MapStore) Update(Id string, customer domain.Customer) error {
 		return errors.New("Customer doesn't exist !")
 	}
 	mstore.store[customer.Id] = customer
-	fmt.Printf("Customer [%s] updated !", Id)
+	fmt.Printf("Customer [%s] updated !\n", Id)
 	return nil
 }
 
