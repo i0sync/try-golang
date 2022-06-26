@@ -3,7 +3,7 @@ package main
 import (
 	"customerapp/domain"
 	"customerapp/mapstore"
-	"fmt"
+	"log"
 )
 
 type CustomerController struct {
@@ -12,50 +12,50 @@ type CustomerController struct {
 }
 
 func (cc CustomerController) AddCustomer(c domain.Customer) {
-	fmt.Printf("\nInside AddCustomer method\n")
+	log.Printf("Inside AddCustomer method")
 	err := cc.store.Create(c)
 	if err != nil {
-		fmt.Println("Error:", err)
+		log.Println("Error:", err)
 		return
 	}
 }
 
 func (cc CustomerController) ReadCustomer(Id string) {
-	fmt.Printf("\nInside ReadCustomer method\n")
+	log.Printf("Inside ReadCustomer method")
 	customer, err := cc.store.GetById(Id)
 	if err != nil {
-		fmt.Println("Error:", err)
+		log.Println("Error:", err)
 		return
 	}
-	fmt.Println(customer)
+	log.Println(customer)
 }
 
 func (cc CustomerController) ReadAllCustomers() {
-	fmt.Printf("\nInside ReadAllCustomers method\n")
+	log.Printf("Inside ReadAllCustomers method")
 	customers, err := cc.store.GetAll()
 	if err != nil {
-		fmt.Println("Error:", err)
+		log.Println("Error:", err)
 		return
 	}
 	for _, customer := range customers {
-		fmt.Println(customer)
+		log.Println(customer)
 	}
 }
 
 func (cc CustomerController) UpdateCustomer(Id string, c domain.Customer) {
-	fmt.Printf("\nInside UpdateCustomer method\n")
+	log.Printf("Inside UpdateCustomer method")
 	err := cc.store.Update(Id, c)
 	if err != nil {
-		fmt.Println("Error:", err)
+		log.Println("Error:", err)
 		return
 	}
 }
 
 func (cc CustomerController) DeleteCustomer(Id string) {
-	fmt.Printf("\nInside DeleteCustomer method\n")
+	log.Printf("Inside DeleteCustomer method")
 	err := cc.store.Delete(Id)
 	if err != nil {
-		fmt.Println("Error:", err)
+		log.Println("Error:", err)
 		return
 	}
 }

@@ -3,7 +3,7 @@ package mapstore
 import (
 	"customerapp/domain"
 	"errors"
-	"fmt"
+	"log"
 )
 
 type MapStore struct {
@@ -21,7 +21,7 @@ func (mstore MapStore) Create(customer domain.Customer) error {
 		return errors.New("Customer already exists !")
 	}
 	mstore.store[customer.Id] = customer
-	fmt.Printf("New customer [%s] added !\n", customer.Id)
+	log.Printf("New customer [%s] added !", customer.Id)
 	return nil
 }
 
@@ -30,7 +30,7 @@ func (mstore *MapStore) Delete(Id string) error {
 		return errors.New("Customer doesn't exist !")
 	}
 	delete(mstore.store, Id)
-	fmt.Printf("Customer [%s] deleted !\n", Id)
+	log.Printf("Customer [%s] deleted !", Id)
 	return nil
 }
 
@@ -39,7 +39,7 @@ func (mstore *MapStore) Update(Id string, customer domain.Customer) error {
 		return errors.New("Customer doesn't exist !")
 	}
 	mstore.store[customer.Id] = customer
-	fmt.Printf("Customer [%s] updated !\n", Id)
+	log.Printf("Customer [%s] updated !", Id)
 	return nil
 }
 
